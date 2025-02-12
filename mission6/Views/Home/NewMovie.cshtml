@@ -1,0 +1,41 @@
+﻿@model NewMovie
+
+<h1>Add a Movie</h1>
+
+<h2>Movie Entry Form</h2>
+<link href="~/css/site.css" rel="stylesheet" />
+<form action="#" method="POST">
+    <label asp-for="Category">Category:</label>
+    <input asp-for="Category" type="text">
+
+    <label asp-for="Title">Title:</label>
+    <input asp-for="Title" type="text">
+
+    <label asp-for="Year">Year:</label>
+    <input asp-for="Year" type="number" min="1900" max="2099">
+
+    <label asp-for="Director">Director:</label>
+    <input asp-for="Director" type="text">
+
+    <label asp-for="Rating">Rating:</label>
+    <select asp-for="Rating">
+        <option value="">Select a Rating</option>
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+    </select>
+
+    <div class="checkbox-container">
+        <input asp-for="Edited" type="checkbox">
+        <label asp-for="Edited">Edited (True/False)</label>
+    </div>
+
+    <label asp-for="LentTo">Lent To:</label>
+    <input asp-for="LentTo" type="text">
+
+    <label asp-for="Notes">Notes:</label>
+    <textarea asp-for="Notes" rows="4" maxlength="25"></textarea>
+
+    <button type="submit">Submit</button>
+</form>
