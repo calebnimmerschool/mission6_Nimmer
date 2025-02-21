@@ -1,22 +1,37 @@
-﻿@model NewMovie
+﻿@model Movie
 
 <h1>Add a Movie</h1>
 
 <h2>Movie Entry Form</h2>
 <link href="~/css/site.css" rel="stylesheet" />
+
 <form action="#" method="POST">
-    <label asp-for="Category">Category:</label>
-    <input asp-for="Category" type="text">
 
-    <label asp-for="Title">Title:</label>
-    <input asp-for="Title" type="text">
+    <input type="hidden" asp-for="MovieId" />
 
+	<!-- Title -->
+	<label asp-for="Title">Title:</label>
+	<input asp-for="Title" type="text" required />
+    
+    <!-- Category Selection -->
+    <label asp-for="CategoryId">Category:</label>
+    <select asp-for="CategoryId">
+        <option value="">Select a category</option>
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
+
+    <!-- Year -->
     <label asp-for="Year">Year:</label>
-    <input asp-for="Year" type="number" min="1900" max="2099">
+    <input asp-for="Year" type="number" min="1888" max="2099" required />
 
+    <!-- Director (Optional) -->
     <label asp-for="Director">Director:</label>
-    <input asp-for="Director" type="text">
+    <input asp-for="Director" type="text" />
 
+    <!-- Rating (Optional) -->
     <label asp-for="Rating">Rating:</label>
     <select asp-for="Rating">
         <option value="">Select a Rating</option>
@@ -26,16 +41,20 @@
         <option value="R">R</option>
     </select>
 
+    <!-- Edited Checkbox -->
     <div class="checkbox-container">
-        <input asp-for="Edited" type="checkbox">
+        <input asp-for="Edited" type="checkbox" />
         <label asp-for="Edited">Edited (True/False)</label>
     </div>
 
+    <!-- LentTo (Optional) -->
     <label asp-for="LentTo">Lent To:</label>
-    <input asp-for="LentTo" type="text">
+    <input asp-for="LentTo" type="text" />
 
+    <!-- Notes (Optional) -->
     <label asp-for="Notes">Notes:</label>
     <textarea asp-for="Notes" rows="4" maxlength="25"></textarea>
 
+    <!-- Submit Button -->
     <button type="submit">Submit</button>
 </form>

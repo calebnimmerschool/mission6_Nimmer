@@ -1,0 +1,46 @@
+﻿
+@model List<Movie>
+
+<h1>Movie List</h1>
+
+<table class="table table-bordered">
+    <thead class="fw-bold">
+        <tr>
+            <th>Movie ID</th>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Rating</th>
+            <th>Edited</th>
+            <th>Lent To</th>
+            <th>Copied to Plex</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.MovieId</td>
+                <td>@movie.CategoryId</td>
+                <td>@(movie.Category?.CategoryName ?? "No Category")</td> <!-- Null check -->
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Director</td>
+                <td>@movie.Rating</td>
+                <td>@(movie.Edited ? "Yes" : "No")</td>  <!-- Convert int to Yes/No -->
+                <td>@(string.IsNullOrEmpty(movie.LentTo) ? "N/A" : movie.LentTo)</td> <!-- Handle null values -->
+                <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
+                <td>@(string.IsNullOrEmpty(movie.Notes) ? "No Notes" : movie.Notes)</td>
+
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@movie.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@movie.MovieId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<link href="~/css/site.css" rel="stylesheet" />
