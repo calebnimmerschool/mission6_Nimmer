@@ -3,6 +3,7 @@
 
 <h1>Movie List</h1>
 
+<!--I created a table here with all the column names from the table-->
 <table class="table table-bordered">
     <thead class="fw-bold">
         <tr>
@@ -19,6 +20,8 @@
             <th>Notes</th>
         </tr>
     </thead>
+
+    <!--Here I am looping through to fill each row with the corresponding info from the database-->
     <tbody>
         @foreach (var movie in Model)
         {
@@ -35,6 +38,7 @@
                 <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
                 <td>@(string.IsNullOrEmpty(movie.Notes) ? "No Notes" : movie.Notes)</td>
 
+                <!--Create buttons that when clicked will either send to the NewMovie page or delete a row-->
                 <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@movie.MovieId">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@movie.MovieId">Delete</a></td>
             </tr>

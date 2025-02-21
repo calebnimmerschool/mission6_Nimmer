@@ -36,7 +36,7 @@ namespace mission6_Nimmer.Controllers
             return View(movies); // Pass the list of movies to the View
         }
 
-
+        //This will get the view for creating a new movie
         [HttpGet]
         public IActionResult NewMovie()
         {
@@ -45,8 +45,9 @@ namespace mission6_Nimmer.Controllers
             return View("NewMovie", new Movie());
         }
 
+        //This will save the new movie to the database
         [HttpPost]
-
+        
         public IActionResult NewMovie(Movie response)
         {
             _newMovieContext.Movies.Add(response);
@@ -54,6 +55,7 @@ namespace mission6_Nimmer.Controllers
             return View();
         }
 
+        //This route grabs info for the movie selected to edit
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -65,6 +67,7 @@ namespace mission6_Nimmer.Controllers
             return View("NewMovie", record);
         }
 
+        //Saves the changes made in the edit
         [HttpPost]
         public IActionResult Edit(Movie response) 
         {
@@ -74,6 +77,7 @@ namespace mission6_Nimmer.Controllers
             return RedirectToAction("movieList");
         }
 
+        //This is a route that will get the movie id and pass it when the delete button is clicked
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -83,6 +87,8 @@ namespace mission6_Nimmer.Controllers
             return View(movieToDelete);
         }
 
+
+        //Route to delete a movie
         [HttpPost]
         public IActionResult Delete(Movie response)
         {
